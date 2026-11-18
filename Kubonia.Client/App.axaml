@@ -18,6 +18,21 @@
             <Setter Property="BorderThickness" Value="0" />
         </Style>
 
+        <Style Selector="TabControl.WorkspaceTabs">
+            <Setter Property="Background" Value="{DynamicResource AppBackground}" />
+        </Style>
+
+        <Style Selector="TabControl.WorkspaceTabs TabItem">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+            <Setter Property="Padding" Value="14,8" />
+        </Style>
+
+        <Style Selector="TabControl.WorkspaceTabs TabItem:selected">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource AccentStrong}" />
+        </Style>
+
         <Style Selector="Border.NavItem">
             <Setter Property="Height" Value="31" />
             <Setter Property="Margin" Value="0" />
@@ -42,6 +57,34 @@
         <Style Selector="Border.NavItem TextBlock">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+        </Style>
+
+        <Style Selector="Button.NavItemButton">
+            <Setter Property="Height" Value="31" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="10,0" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+
+        <Style Selector="Button.NavItemButton:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SurfaceHover}" />
+        </Style>
+
+        <Style Selector="Button.NavItemButton.Selected">
+            <Setter Property="Background" Value="{DynamicResource AccentSoft}" />
+        </Style>
+
+        <Style Selector="Button.NavItemButton TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+        </Style>
+
+        <Style Selector="Button.NavItemButton.Selected TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource AccentStrong}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
 
         <Style Selector="Button.SidebarGroupToggle">
@@ -137,6 +180,48 @@
             <Setter Property="Margin" Value="16,0" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Foreground" Value="{DynamicResource Danger}" />
+        </Style>
+
+        <Style Selector="TextBlock.PodsTableHeader">
+            <Setter Property="Margin" Value="10,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource TextMuted}" />
+        </Style>
+
+        <Style Selector="TextBlock.PodsTableCell">
+            <Setter Property="Margin" Value="10,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        </Style>
+
+        <Style Selector="TextBlock.PodsTableName">
+            <Setter Property="Margin" Value="10,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        </Style>
+
+        <Style Selector="Grid.PodsTableRow">
+            <Setter Property="Height" Value="38" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+
+        <Style Selector="Grid.PodsTableRow:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SurfaceHover}" />
+        </Style>
+
+        <Style Selector="Button.PodsRefreshButton">
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="12,0" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="Background" Value="{DynamicResource AccentStrong}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentStrong}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="White" />
         </Style>
     </Application.Styles>
 

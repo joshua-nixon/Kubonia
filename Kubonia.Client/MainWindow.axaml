@@ -78,18 +78,24 @@
                                     Margin="4,3,0,0"
                                     Spacing="1"
                                     IsVisible="True">
-                            <Border Classes="NavItem Selected">
+                            <Button x:Name="OverviewNavigation"
+                                    Classes="NavItemButton Selected"
+                                    Tag="overview"
+                                    Click="NavigationButton_Click">
                                 <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
                                     <Ellipse Width="7" Height="7" Fill="{DynamicResource Accent}" />
                                     <TextBlock Text="Overview" />
                                 </StackPanel>
-                            </Border>
-                            <Border Classes="NavItem">
+                            </Button>
+                            <Button x:Name="PodsNavigation"
+                                    Classes="NavItemButton"
+                                    Tag="pods"
+                                    Click="NavigationButton_Click">
                                 <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
                                     <Ellipse Width="7" Height="7" Fill="{DynamicResource Link}" />
                                     <TextBlock Text="Pods" />
                                 </StackPanel>
-                            </Border>
+                            </Button>
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
@@ -133,8 +139,14 @@
                 </Grid>
             </Border>
 
-            <!-- Dashboard -->
-            <ScrollViewer Grid.Row="1"
+            <TabControl x:Name="PageTabs"
+                        Grid.Row="1"
+                        Classes="WorkspaceTabs"
+                        SelectionChanged="PageTabs_SelectionChanged">
+                <TabItem x:Name="OverviewTab"
+                         Header="Overview"
+                         Tag="overview">
+                    <ScrollViewer
                           HorizontalScrollBarVisibility="Disabled"
                           VerticalScrollBarVisibility="Auto">
                 <StackPanel Margin="22" Spacing="18">
@@ -309,7 +321,9 @@
                         </DockPanel>
                     </Border>
                 </StackPanel>
-            </ScrollViewer>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
         </Grid>
     </Grid>
 </Window>

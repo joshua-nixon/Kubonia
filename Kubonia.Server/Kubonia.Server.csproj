@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Kubonia.Server.K8s\Kubonia.Server.K8s.csproj" />
+    <PackageReference Include="KubernetesClient" Version="21.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Kubonia.Shared.Common\Kubonia.Shared.Common.csproj" />
     <ProjectReference Include="..\Kubonia.Shared.Contracts\Kubonia.Shared.Contracts.csproj" />
   </ItemGroup>

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Kubonia",
+    "Projects": [
+      {
+        "Path": "Kubonia.Client\\Kubonia.Client.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Kubonia.Server\\Kubonia.Server.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

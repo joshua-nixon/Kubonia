@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using k8s;
-using Microsoft.Extensions.DependencyInjection;
+﻿using k8s;
 
 namespace Kubonia.Server.K8s
 {
