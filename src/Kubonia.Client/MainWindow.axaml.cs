@@ -11,26 +11,22 @@ namespace Kubonia.Client;
 public partial class MainWindow : Window
 {
     private readonly NavigationGroup _workloadsGroup;
-    private readonly WorkspaceTabCollection _openTabs = new();
+    private readonly WorkspaceTabCollection _openTabs;
     private bool _navigationReady;
     private bool _isSynchronizingNavigationSelection;
 
-    public MainWindow(Func<PodsView> createPodsView)
+    public MainWindow(ViewFactory viewFactory)
     {
         InitializeComponent();
+
+        _openTabs = new WorkspaceTabCollection(viewFactory);
 
         _workloadsGroup = new NavigationGroup(
             "workloads",
             "Workloads",
             [
-                new NavigationViewDefinition(
-                    "overview",
-                    "Overview",
-                    () => new OverviewView()),
-                new NavigationViewDefinition(
-                    "pods",
-                    "Pods",
-                    createPodsView)
+                new NavigationViewDefinition<OverviewView>("Overview"),
+                new NavigationViewDefinition<PodsView>("Pods")
             ]);
 
         WorkloadsTitle.Text = _workloadsGroup.Title;
@@ -56,7 +52,7 @@ public partial class MainWindow : Window
         if (!_navigationReady ||
             _isSynchronizingNavigationSelection ||
             !ReferenceEquals(e.Source, WorkloadsItems) ||
-            WorkloadsItems.SelectedItem is not NavigationViewDefinition page)
+            WorkloadsItems.SelectedItem is not INavigationViewDefinition page)
         {
             return;
         }
@@ -135,7 +131,7 @@ public partial class MainWindow : Window
         SetSelectedNavigation(_workloadsGroup.GetPage(routeKey));
     }
 
-    private void SetSelectedNavigation(NavigationViewDefinition page)
+    private void SetSelectedNavigation(INavigationViewDefinition page)
     {
         _isSynchronizingNavigationSelection = true;
         try

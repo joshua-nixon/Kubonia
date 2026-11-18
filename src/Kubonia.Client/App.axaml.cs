@@ -1,10 +1,7 @@
-using System;
-using System.Net.Http;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Kubonia.Client.Services;
-using Kubonia.Client.Views;
+using Kubonia.Client.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Kubonia.Client;
@@ -22,15 +19,9 @@ public partial class App : Application
         {
             var services = new ServiceCollection();
 
-            services.AddSingleton(_ => new HttpClient
-            {
-                BaseAddress = new Uri("http://127.0.0.1:5215/")
-            });
-
-            services.AddSingleton<IKubeServerClient, KubeServerClient>();
-            services.AddTransient<PodsView>();
-            services.AddSingleton<Func<PodsView>>(provider => provider.GetRequiredService<PodsView>);
             services.AddTransient<MainWindow>();
+
+            services.AddClientServices();
 
             var provider = services.BuildServiceProvider();
 

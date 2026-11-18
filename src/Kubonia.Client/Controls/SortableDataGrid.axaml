@@ -1,17 +1,19 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="Kubonia.Client.Controls.SortableDataGrid">
+             x:Class="Kubonia.Client.Controls.SortableDataGrid"
+             x:Name="Root">
     <UserControl.Styles>
         <Style Selector="Button.SortableDataGridColumnsButton">
             <Setter Property="Height" Value="30" />
-            <Setter Property="MinWidth" Value="100" />
-            <Setter Property="Padding" Value="10,0" />
+            <Setter Property="MinWidth" Value="96" />
+            <Setter Property="Padding" Value="9,0" />
             <Setter Property="CornerRadius" Value="6" />
             <Setter Property="Background" Value="{DynamicResource SurfaceBackground}" />
             <Setter Property="BorderBrush" Value="{DynamicResource BorderDefault}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="13" />
         </Style>
 
         <Style Selector="Button.SortableDataGridColumnsButton:pointerover">
@@ -24,22 +26,81 @@
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="7" />
             <Setter Property="Padding" Value="6" />
+            <Setter Property="Width" Value="184" />
         </Style>
 
-        <Style Selector="CheckBox.SortableDataGridColumnOption">
-            <Setter Property="Padding" Value="6,4" />
+        <Style Selector="ToggleButton.SortableDataGridColumnOption">
+            <Setter Property="Padding" Value="8,3" />
             <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="MinHeight" Value="30" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid ColumnDefinitions="16,*" ColumnSpacing="8">
+                        <Border x:Name="Indicator"
+                                Width="16"
+                                Height="16"
+                                CornerRadius="3"
+                                BorderThickness="1"
+                                BorderBrush="{DynamicResource BorderStrong}"
+                                Background="{DynamicResource SurfaceBackground}"
+                                VerticalAlignment="Center">
+                            <Path x:Name="CheckMark"
+                                  Data="M 2,7 L 5.5,10.5 L 12,3.5"
+                                  Stroke="White"
+                                  StrokeThickness="1.5"
+                                  StrokeLineCap="Round"
+                                  StrokeJoin="Round"
+                                  IsVisible="False" />
+                        </Border>
+                        <ContentPresenter Grid.Column="1"
+                                          Content="{TemplateBinding Content}"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="ToggleButton.SortableDataGridColumnOption:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SurfaceHover}" />
+        </Style>
+
+        <Style Selector="ToggleButton.SortableDataGridColumnOption:checked /template/ Border#Indicator">
+            <Setter Property="Background" Value="{DynamicResource AccentStrong}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentStrong}" />
+        </Style>
+
+        <Style Selector="ToggleButton.SortableDataGridColumnOption:checked /template/ Path#CheckMark">
+            <Setter Property="IsVisible" Value="True" />
         </Style>
     </UserControl.Styles>
 
     <Grid RowDefinitions="Auto,*">
-        <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,6">
+        <Grid ColumnDefinitions="*,Auto,Auto" Margin="0,0,0,6">
+            <ContentControl Grid.Column="1"
+                            Content="{Binding ToolbarContent, ElementName=Root}"
+                            VerticalAlignment="Center"
+                            Margin="0,0,8,0" />
             <Button x:Name="ColumnsButton"
-                    Grid.Column="1"
+                    Grid.Column="2"
                     Classes="SortableDataGridColumnsButton"
                     Click="ColumnsButton_Click">
-                <TextBlock Text="Columns  v"
-                           VerticalAlignment="Center" />
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="Columns"
+                               VerticalAlignment="Center" />
+                    <Path Width="8"
+                          Height="4"
+                          Data="M 0,0 L 4,4 L 8,0"
+                          Stroke="{DynamicResource TextMuted}"
+                          StrokeThickness="1.25"
+                          StrokeLineCap="Round"
+                          StrokeJoin="Round"
+                          VerticalAlignment="Center" />
+                </StackPanel>
             </Button>
         </Grid>
 
@@ -61,8 +122,11 @@
                Placement="Bottom"
                IsLightDismissEnabled="True">
             <Border Classes="SortableDataGridColumnMenu">
-                <ScrollViewer MaxHeight="360">
-                    <StackPanel x:Name="ColumnOptionsPanel" />
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto"
+                              MaxHeight="360">
+                    <StackPanel x:Name="ColumnOptionsPanel"
+                                HorizontalAlignment="Stretch" />
                 </ScrollViewer>
             </Border>
         </Popup>

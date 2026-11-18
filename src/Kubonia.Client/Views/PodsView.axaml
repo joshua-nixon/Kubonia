@@ -3,8 +3,16 @@
              xmlns:views="using:Kubonia.Client.Views"
              xmlns:controls="using:Kubonia.Client.Controls"
              x:Class="Kubonia.Client.Views.PodsView">
+    <UserControl.Styles>
+        <Style Selector="DataGridCell TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+    </UserControl.Styles>
+	
     <Grid RowDefinitions="Auto,*">
         <Grid Margin="22,22,22,0" ColumnDefinitions="*,Auto,Auto">
+			
+			<!-- Title -->
             <StackPanel>
                 <TextBlock Text="Pods"
                            FontSize="21"
@@ -13,12 +21,8 @@
                 <TextBlock Text="Pods in the current cluster"
                            Margin="0,5,0,0"
                            Foreground="{DynamicResource TextSecondary}" />
-            </StackPanel>
-            <TextBlock x:Name="PodCountText"
-                       Grid.Column="1"
-                       Margin="0,0,14,0"
-                       VerticalAlignment="Center"
-                       Foreground="{DynamicResource TextMuted}" />
+            </StackPanel>		
+			
             <Button x:Name="RefreshButton"
                     Grid.Column="2"
                     Classes="PodsRefreshButton"
@@ -33,17 +37,20 @@
         <Grid Grid.Row="1"
               Margin="22,16,22,22"
               RowDefinitions="Auto,Auto,Auto,*">
+			
             <TextBlock x:Name="LoadingText"
                        Text="Loading pods..."
                        Margin="0,0,0,12"
                        IsVisible="False"
                        Foreground="{DynamicResource TextMuted}" />
+			
             <TextBlock x:Name="EmptyText"
                        Grid.Row="1"
                        Text="No pods found."
                        Margin="0,0,0,12"
                        IsVisible="False"
                        Foreground="{DynamicResource TextMuted}" />
+			
             <TextBlock x:Name="ErrorText"
                        Grid.Row="2"
                        Margin="0,0,0,12"
@@ -56,7 +63,7 @@
                                        IsVisible="False"
                                        x:DataType="views:PodRowViewModel"
                                        ColumnHeaderHeight="38"
-                                       RowHeight="38">
+                                       RowHeight="38">				
                 <controls:SortableDataGrid.Columns>
                     <DataGridTextColumn Header="NAME"
                                         Binding="{Binding Name}"
@@ -68,11 +75,21 @@
                                         SortMemberPath="Namespace"
                                         Width="1.2*"
                                         MinWidth="110" />
-                    <DataGridTextColumn Header="STATUS"
-                                        Binding="{Binding Phase}"
-                                        SortMemberPath="Phase"
-                                        Width="0.9*"
-                                        MinWidth="85" />
+                    <DataGridTemplateColumn Header="STATUS"
+                                            SortMemberPath="Phase"
+                                            Width="0.9*"
+                                            MinWidth="85">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate x:DataType="views:PodRowViewModel">
+                                <TextBlock Text="{Binding Phase}"
+                                           Margin="0"
+                                           VerticalAlignment="Center"
+                                           Classes.TableStatusSuccess="{Binding IsSuccessStatus}"
+                                           Classes.TableStatusWarning="{Binding IsWarningStatus}"
+                                           Classes.TableStatusDanger="{Binding IsDangerStatus}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="NODE"
                                         Binding="{Binding NodeName}"
                                         SortMemberPath="NodeName"
@@ -81,6 +98,7 @@
                     <DataGridTextColumn Header="POD IP"
                                         Binding="{Binding PodIp}"
                                         SortMemberPath="PodIp"
+                                        IsVisible="False"
                                         Width="1.1*"
                                         MinWidth="90" />
                     <DataGridTextColumn Header="READY"

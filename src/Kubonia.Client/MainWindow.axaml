@@ -81,7 +81,7 @@
                                  IsVisible="True"
                                  SelectionChanged="NavigationPages_SelectionChanged">
                             <ListBox.ItemTemplate>
-                                <DataTemplate x:DataType="navigation:NavigationViewDefinition">
+                                <DataTemplate x:DataType="navigation:INavigationViewDefinition">
                                     <StackPanel Orientation="Horizontal"
                                                 Spacing="10"
                                                 VerticalAlignment="Center">
@@ -99,44 +99,9 @@
         </Border>
 
         <!-- Main area -->
-        <Grid Grid.Column="1" RowDefinitions="44,*">
-            <!-- Toolbar -->
-            <Border Grid.Row="0"
-                    Background="{DynamicResource SurfaceBackground}"
-                    BorderBrush="{DynamicResource BorderDefault}"
-                    BorderThickness="0,0,0,1"
-                    Padding="10,0">
-                <Grid ColumnDefinitions="Auto,*,Auto">
-                    <StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
-                        <Border Classes="ToolbarButton">
-                            <TextBlock Text="&lt;" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                        <Border Classes="ToolbarButton">
-                            <TextBlock Text="&gt;" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </StackPanel>
-
-                    <Border Grid.Column="2"
-                            VerticalAlignment="Center"
-                            Height="30"
-                            Padding="10,0"
-                            CornerRadius="7"
-                            Background="{DynamicResource SurfaceElevated}"
-                            BorderBrush="{DynamicResource BorderStrong}"
-                            BorderThickness="1">
-                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-                            <Ellipse Width="7" Height="7" Fill="{DynamicResource Success}" />
-                            <TextBlock Text="Connected"
-                                       FontSize="12"
-                                       FontWeight="SemiBold"
-                                       Foreground="{DynamicResource TextPrimary}" />
-                        </StackPanel>
-                    </Border>
-                </Grid>
-            </Border>
+        <Grid Grid.Column="1">
 
             <TabControl x:Name="PageTabs"
-                        Grid.Row="1"
                         Classes="WorkspaceTabs"
                         SelectionChanged="PageTabs_SelectionChanged">
                 <TabControl.ItemTemplate>

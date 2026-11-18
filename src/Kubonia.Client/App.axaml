@@ -217,18 +217,21 @@
         <Style Selector="TextBlock.TableStatusSuccess">
             <Setter Property="Margin" Value="16,0" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Foreground" Value="{DynamicResource Success}" />
         </Style>
 
         <Style Selector="TextBlock.TableStatusWarning">
             <Setter Property="Margin" Value="16,0" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Foreground" Value="{DynamicResource Warning}" />
         </Style>
 
         <Style Selector="TextBlock.TableStatusDanger">
             <Setter Property="Margin" Value="16,0" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Foreground" Value="{DynamicResource Danger}" />
         </Style>
 

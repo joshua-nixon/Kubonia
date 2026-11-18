@@ -1,7 +1,4 @@
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Kubonia.Client.Navigation;
@@ -57,7 +54,6 @@ public partial class PodsView : UserControl, INavigationAware
                 _pods.Add(row);
             }
 
-            PodCountText.Text = $"{_pods.Count} pods";
             LoadingText.IsVisible = false;
             EmptyText.IsVisible = _pods.Count == 0;
             PodsTable.IsVisible = _pods.Count > 0;
