@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Props/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Project Path="Kubonia.Client/Kubonia.Client.csproj" />
+  <Project Path="Kubonia.Server/Kubonia.Server.csproj" />
+  <Project Path="Kubonia.Shared/Kubonia.Shared.csproj" Id="90bdd0a1-68a3-40fd-ba47-43afcafce120" />
+</Solution>

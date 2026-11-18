@@ -1,0 +1,70 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Kubonia.Client.Controls.SortableDataGrid">
+    <UserControl.Styles>
+        <Style Selector="Button.SortableDataGridColumnsButton">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="MinWidth" Value="100" />
+            <Setter Property="Padding" Value="10,0" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Background" Value="{DynamicResource SurfaceBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderDefault}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="Button.SortableDataGridColumnsButton:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SurfaceHover}" />
+        </Style>
+
+        <Style Selector="Border.SortableDataGridColumnMenu">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderDefault}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="Padding" Value="6" />
+        </Style>
+
+        <Style Selector="CheckBox.SortableDataGridColumnOption">
+            <Setter Property="Padding" Value="6,4" />
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,*">
+        <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,6">
+            <Button x:Name="ColumnsButton"
+                    Grid.Column="1"
+                    Classes="SortableDataGridColumnsButton"
+                    Click="ColumnsButton_Click">
+                <TextBlock Text="Columns  v"
+                           VerticalAlignment="Center" />
+            </Button>
+        </Grid>
+
+        <Border Grid.Row="1"
+                CornerRadius="9"
+                Background="{DynamicResource SurfaceBackground}"
+                BorderBrush="{DynamicResource BorderDefault}"
+                BorderThickness="1"
+                ClipToBounds="True">
+            <DataGrid x:Name="InnerGrid"
+                      Classes="SortableTable"
+                      AutoGenerateColumns="False"
+                      CanUserResizeColumns="True"
+                      CanUserSortColumns="True"
+                      IsReadOnly="True" />
+        </Border>
+
+        <Popup x:Name="ColumnVisibilityPopup"
+               Placement="Bottom"
+               IsLightDismissEnabled="True">
+            <Border Classes="SortableDataGridColumnMenu">
+                <ScrollViewer MaxHeight="360">
+                    <StackPanel x:Name="ColumnOptionsPanel" />
+                </ScrollViewer>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

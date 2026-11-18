@@ -1,6 +1,0 @@
-<Solution>
-  <Project Path="Kubonia.Client/Kubonia.Client.csproj" />
-  <Project Path="Kubonia.Server/Kubonia.Server.csproj" />
-  <Project Path="Kubonia.Shared.Common/Kubonia.Shared.Common.csproj" Id="b14554a7-335e-49d8-8ceb-c7f1e11610a2" />
-  <Project Path="Kubonia.Shared.Contracts/Kubonia.Shared.Contracts.csproj" />
-</Solution>

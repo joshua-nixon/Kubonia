@@ -1,0 +1,183 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="Kubonia.Client.Views.OverviewView">
+    <ScrollViewer
+        HorizontalScrollBarVisibility="Disabled"
+        VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="22" Spacing="18">
+            <!-- Header -->
+            <Grid ColumnDefinitions="*,Auto">
+                <StackPanel>
+                    <TextBlock Text="Overview"
+                        FontSize="21"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource TextPrimary}" />
+                    <TextBlock Text="Cluster resources and health"
+                        Margin="0,5,0,0"
+                        Foreground="{DynamicResource TextSecondary}" />
+                </StackPanel>
+                <Border Grid.Column="1"
+                    Height="34"
+                    Padding="12,0"
+                    VerticalAlignment="Center"
+                    CornerRadius="7"
+                    Background="{DynamicResource AccentStrong}"
+                    BorderBrush="{DynamicResource AccentStrong}"
+                    BorderThickness="1">
+                    <TextBlock Text="Refresh"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        FontWeight="SemiBold"
+                        Foreground="White" />
+                </Border>
+            </Grid>
+
+            <!-- Summary cards -->
+            <UniformGrid Columns="4">
+                <Border Classes="MetricCard">
+                    <StackPanel>
+                        <TextBlock Text="Nodes" Foreground="{DynamicResource TextSecondary}" />
+                        <TextBlock Text="3"
+                            Margin="0,8,0,0"
+                            FontSize="26"
+                            FontWeight="SemiBold"
+                            Foreground="{DynamicResource TextPrimary}" />
+                        <TextBlock Text="All ready"
+                            Margin="0,4,0,0"
+                            FontSize="11"
+                            Foreground="{DynamicResource Success}" />
+                    </StackPanel>
+                </Border>
+                <Border Classes="MetricCard">
+                    <StackPanel>
+                        <TextBlock Text="Pods" Foreground="{DynamicResource TextSecondary}" />
+                        <TextBlock Text="42"
+                            Margin="0,8,0,0"
+                            FontSize="26"
+                            FontWeight="SemiBold"
+                            Foreground="{DynamicResource TextPrimary}" />
+                        <TextBlock Text="38 running"
+                            Margin="0,4,0,0"
+                            FontSize="11"
+                            Foreground="{DynamicResource Success}" />
+                    </StackPanel>
+                </Border>
+                <Border Classes="MetricCard">
+                    <StackPanel>
+                        <TextBlock Text="Deployments" Foreground="{DynamicResource TextSecondary}" />
+                        <TextBlock Text="12"
+                            Margin="0,8,0,0"
+                            FontSize="26"
+                            FontWeight="SemiBold"
+                            Foreground="{DynamicResource TextPrimary}" />
+                        <TextBlock Text="11 healthy"
+                            Margin="0,4,0,0"
+                            FontSize="11"
+                            Foreground="{DynamicResource Success}" />
+                    </StackPanel>
+                </Border>
+                <Border Classes="MetricCard">
+                    <StackPanel>
+                        <TextBlock Text="Warnings" Foreground="{DynamicResource TextSecondary}" />
+                        <TextBlock Text="4"
+                            Margin="0,8,0,0"
+                            FontSize="26"
+                            FontWeight="SemiBold"
+                            Foreground="{DynamicResource TextPrimary}" />
+                        <TextBlock Text="Needs attention"
+                            Margin="0,4,0,0"
+                            FontSize="11"
+                            Foreground="{DynamicResource Warning}" />
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <!-- Resource table -->
+            <Border CornerRadius="9"
+                Background="{DynamicResource SurfaceBackground}"
+                BorderBrush="{DynamicResource BorderDefault}"
+                BorderThickness="1"
+                ClipToBounds="True">
+                <DockPanel>
+                    <Border DockPanel.Dock="Top"
+                        Height="54"
+                        Padding="16,0"
+                        BorderBrush="{DynamicResource BorderDefault}"
+                        BorderThickness="0,0,0,1">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="Recent resources"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="{DynamicResource TextPrimary}" />
+                            <Border Grid.Column="1"
+                                Width="220"
+                                Height="32"
+                                CornerRadius="7"
+                                Background="{DynamicResource AppBackground}"
+                                BorderBrush="{DynamicResource BorderDefault}"
+                                BorderThickness="1"
+                                Padding="10,0">
+                                <TextBlock Text="Search resources"
+                                    VerticalAlignment="Center"
+                                    Foreground="{DynamicResource TextMuted}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <Grid RowDefinitions="36,42,42,42,42,42">
+                        <Grid Grid.Row="0"
+                            ColumnDefinitions="2*,1.2*,1*,1*,0.7*"
+                            Background="{DynamicResource SurfaceElevated}">
+                            <TextBlock Classes="TableHeader" Text="NAME" />
+                            <TextBlock Grid.Column="1" Classes="TableHeader" Text="NAMESPACE" />
+                            <TextBlock Grid.Column="2" Classes="TableHeader" Text="STATUS" />
+                            <TextBlock Grid.Column="3" Classes="TableHeader" Text="TYPE" />
+                            <TextBlock Grid.Column="4" Classes="TableHeader" Text="AGE" />
+                        </Grid>
+
+                        <Grid Grid.Row="1" ColumnDefinitions="2*,1.2*,1*,1*,0.7*" Classes="TableRow">
+                            <TextBlock Classes="TableCellName" Text="api-deployment-7d5c8" />
+                            <TextBlock Grid.Column="1" Classes="TableCell" Text="production" />
+                            <TextBlock Grid.Column="2" Classes="TableStatusSuccess" Text="Running" />
+                            <TextBlock Grid.Column="3" Classes="TableCell" Text="Deployment" />
+                            <TextBlock Grid.Column="4" Classes="TableCell" Text="3h" />
+                        </Grid>
+                        <Grid Grid.Row="2" ColumnDefinitions="2*,1.2*,1*,1*,0.7*" Classes="TableRow">
+                            <TextBlock Classes="TableCellName" Text="postgres-0" />
+                            <TextBlock Grid.Column="1" Classes="TableCell" Text="databases" />
+                            <TextBlock Grid.Column="2" Classes="TableStatusSuccess" Text="Running" />
+                            <TextBlock Grid.Column="3" Classes="TableCell" Text="Pod" />
+                            <TextBlock Grid.Column="4" Classes="TableCell" Text="2d" />
+                        </Grid>
+                        <Grid Grid.Row="3" ColumnDefinitions="2*,1.2*,1*,1*,0.7*" Classes="TableRow">
+                            <TextBlock Classes="TableCellName" Text="frontend-ingress" />
+                            <TextBlock Grid.Column="1" Classes="TableCell" Text="production" />
+                            <TextBlock Grid.Column="2" Classes="TableStatusWarning" Text="Pending" />
+                            <TextBlock Grid.Column="3" Classes="TableCell" Text="Ingress" />
+                            <TextBlock Grid.Column="4" Classes="TableCell" Text="18m" />
+                        </Grid>
+                        <Grid Grid.Row="4" ColumnDefinitions="2*,1.2*,1*,1*,0.7*" Classes="TableRow">
+                            <TextBlock Classes="TableCellName" Text="worker-daemon" />
+                            <TextBlock Grid.Column="1" Classes="TableCell" Text="kube-system" />
+                            <TextBlock Grid.Column="2" Classes="TableStatusSuccess" Text="Ready" />
+                            <TextBlock Grid.Column="3" Classes="TableCell" Text="DaemonSet" />
+                            <TextBlock Grid.Column="4" Classes="TableCell" Text="6d" />
+                        </Grid>
+                        <Grid Grid.Row="5" ColumnDefinitions="2*,1.2*,1*,1*,0.7*" Classes="TableRow">
+                            <TextBlock Classes="TableCellName" Text="metrics-server" />
+                            <TextBlock Grid.Column="1" Classes="TableCell" Text="kube-system" />
+                            <TextBlock Grid.Column="2" Classes="TableStatusDanger" Text="Failed" />
+                            <TextBlock Grid.Column="3" Classes="TableCell" Text="Pod" />
+                            <TextBlock Grid.Column="4" Classes="TableCell" Text="42m" />
+                        </Grid>
+                    </Grid>
+                </DockPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
+
+
+

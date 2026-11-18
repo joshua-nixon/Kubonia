@@ -1,0 +1,105 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="using:Kubonia.Client.Views"
+             xmlns:controls="using:Kubonia.Client.Controls"
+             x:Class="Kubonia.Client.Views.PodsView">
+    <Grid RowDefinitions="Auto,*">
+        <Grid Margin="22,22,22,0" ColumnDefinitions="*,Auto,Auto">
+            <StackPanel>
+                <TextBlock Text="Pods"
+                           FontSize="21"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource TextPrimary}" />
+                <TextBlock Text="Pods in the current cluster"
+                           Margin="0,5,0,0"
+                           Foreground="{DynamicResource TextSecondary}" />
+            </StackPanel>
+            <TextBlock x:Name="PodCountText"
+                       Grid.Column="1"
+                       Margin="0,0,14,0"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource TextMuted}" />
+            <Button x:Name="RefreshButton"
+                    Grid.Column="2"
+                    Classes="PodsRefreshButton"
+                    Click="RefreshButton_Click">
+                <TextBlock Text="Refresh"
+                           VerticalAlignment="Center"
+                           FontWeight="SemiBold"
+                           Foreground="White" />
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Margin="22,16,22,22"
+              RowDefinitions="Auto,Auto,Auto,*">
+            <TextBlock x:Name="LoadingText"
+                       Text="Loading pods..."
+                       Margin="0,0,0,12"
+                       IsVisible="False"
+                       Foreground="{DynamicResource TextMuted}" />
+            <TextBlock x:Name="EmptyText"
+                       Grid.Row="1"
+                       Text="No pods found."
+                       Margin="0,0,0,12"
+                       IsVisible="False"
+                       Foreground="{DynamicResource TextMuted}" />
+            <TextBlock x:Name="ErrorText"
+                       Grid.Row="2"
+                       Margin="0,0,0,12"
+                       IsVisible="False"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource Danger}" />
+
+            <controls:SortableDataGrid x:Name="PodsTable"
+                                       Grid.Row="3"
+                                       IsVisible="False"
+                                       x:DataType="views:PodRowViewModel"
+                                       ColumnHeaderHeight="38"
+                                       RowHeight="38">
+                <controls:SortableDataGrid.Columns>
+                    <DataGridTextColumn Header="NAME"
+                                        Binding="{Binding Name}"
+                                        SortMemberPath="Name"
+                                        Width="2.2*"
+                                        MinWidth="120" />
+                    <DataGridTextColumn Header="NAMESPACE"
+                                        Binding="{Binding Namespace}"
+                                        SortMemberPath="Namespace"
+                                        Width="1.2*"
+                                        MinWidth="110" />
+                    <DataGridTextColumn Header="STATUS"
+                                        Binding="{Binding Phase}"
+                                        SortMemberPath="Phase"
+                                        Width="0.9*"
+                                        MinWidth="85" />
+                    <DataGridTextColumn Header="NODE"
+                                        Binding="{Binding NodeName}"
+                                        SortMemberPath="NodeName"
+                                        Width="1.1*"
+                                        MinWidth="100" />
+                    <DataGridTextColumn Header="POD IP"
+                                        Binding="{Binding PodIp}"
+                                        SortMemberPath="PodIp"
+                                        Width="1.1*"
+                                        MinWidth="90" />
+                    <DataGridTextColumn Header="READY"
+                                        Binding="{Binding Ready}"
+                                        SortMemberPath="Ready"
+                                        Width="0.7*"
+                                        MinWidth="75" />
+                    <DataGridTextColumn Header="RESTARTS"
+                                        Binding="{Binding RestartCount}"
+                                        SortMemberPath="RestartCount"
+                                        Width="0.7*"
+                                        MinWidth="85" />
+                    <DataGridTextColumn Header="AGE"
+                                        Binding="{Binding Age}"
+                                        SortMemberPath="CreatedAt"
+                                        Width="0.7*"
+                                        MinWidth="65" />
+                </controls:SortableDataGrid.Columns>
+            </controls:SortableDataGrid>
+        </Grid>
+    </Grid>
+</UserControl>
