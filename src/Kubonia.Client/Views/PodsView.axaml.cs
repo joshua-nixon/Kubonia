@@ -1,13 +1,12 @@
 using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Kubonia.Client.Navigation;
 using Kubonia.Client.Services;
 using Kubonia.Shared.Pods;
 
 namespace Kubonia.Client.Views;
 
-public partial class PodsView : UserControl, INavigationAware
+public partial class PodsView : UserControl
 {
     private readonly IKubeServerClient _kubeServerClient;
     private readonly ObservableCollection<PodRowViewModel> _pods = [];
@@ -16,13 +15,18 @@ public partial class PodsView : UserControl, INavigationAware
     public PodsView(IKubeServerClient kubeServerClient)
     {
         _kubeServerClient = kubeServerClient;
+
         InitializeComponent();
+
         PodsTable.ItemsSource = _pods;
     }
 
-    public Task LoadAsync() => RefreshPodsAsync();
+    protected override async void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
 
-    public Task OnNavigatedToAsync() => LoadAsync();
+        await RefreshPodsAsync();
+    }
 
     private async void RefreshButton_Click(object? sender, RoutedEventArgs e)
     {

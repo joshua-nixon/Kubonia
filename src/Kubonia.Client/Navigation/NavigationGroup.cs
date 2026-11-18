@@ -5,14 +5,11 @@ public sealed class NavigationGroup
     private readonly IReadOnlyDictionary<string, INavigationViewDefinition> _pagesByRoute;
 
     public NavigationGroup(
-        string key,
         string title,
         IEnumerable<INavigationViewDefinition> pages)
     {
-
-
-        Key = key;
         Title = title;
+        Key = title.ToLowerInvariant();
         Pages = pages.ToList().AsReadOnly();
         _pagesByRoute = Pages.ToDictionary(page => page.Route, StringComparer.Ordinal);
     }

@@ -22,10 +22,8 @@ public partial class MainWindow : Window
         _openTabs = new WorkspaceTabCollection(viewFactory);
 
         _workloadsGroup = new NavigationGroup(
-            "workloads",
             "Workloads",
             [
-                new NavigationViewDefinition<OverviewView>("Overview"),
                 new NavigationViewDefinition<PodsView>("Pods")
             ]);
 
@@ -33,9 +31,9 @@ public partial class MainWindow : Window
         WorkloadsItems.ItemsSource = _workloadsGroup.Pages;
         PageTabs.ItemsSource = _openTabs.Tabs;
 
-        var overviewTab = _openTabs.GetOrAdd(_workloadsGroup.GetPage("overview"));
-        PageTabs.SelectedItem = overviewTab;
-        SetSelectedNavigation("overview");
+        PageTabs.SelectedItem = _openTabs.GetOrAdd(_workloadsGroup.GetPage("pods"));
+
+        SetSelectedNavigation("pods");
 
         _navigationReady = true;
     }

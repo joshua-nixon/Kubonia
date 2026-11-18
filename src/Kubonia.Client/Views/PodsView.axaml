@@ -63,7 +63,7 @@
                                        IsVisible="False"
                                        x:DataType="views:PodRowViewModel"
                                        ColumnHeaderHeight="38"
-                                       RowHeight="38">				
+                                       RowHeight="35">				
                 <controls:SortableDataGrid.Columns>
                     <DataGridTextColumn Header="NAME"
                                         Binding="{Binding Name}"

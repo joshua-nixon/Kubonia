@@ -17,7 +17,6 @@ internal static class ServiceCollectionExtensions
         services.AddSingleton<IKubeServerClient, KubeServerClient>();
         services.AddSingleton<ViewFactory>();
 
-        services.AddTransient<OverviewView>();
         services.AddTransient<PodsView>();
 
         return services;
