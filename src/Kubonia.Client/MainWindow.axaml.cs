@@ -29,11 +29,8 @@ public partial class MainWindow : Window
 
         WorkloadsTitle.Text = _workloadsGroup.Title;
         WorkloadsItems.ItemsSource = _workloadsGroup.Pages;
+
         PageTabs.ItemsSource = _openTabs.Tabs;
-
-        PageTabs.SelectedItem = _openTabs.GetOrAdd(_workloadsGroup.GetPage("pods"));
-
-        SetSelectedNavigation("pods");
 
         _navigationReady = true;
     }
