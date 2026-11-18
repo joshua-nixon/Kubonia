@@ -1,5 +1,4 @@
 ﻿using k8s.Models;
-using Kubonia.Shared.Common;
 using Kubonia.Shared.Pods;
 
 namespace Kubonia.Server.Pods
@@ -20,17 +19,17 @@ namespace Kubonia.Server.Pods
         {
             public PodDTO ToPodDTO()
             {
-                Guard.IsNotNull(pod.Metadata);
-                Guard.IsNotNull(pod.Status);
+                var containerStatuses = pod.Status.ContainerStatuses
+                    .ToDictionary(x => x.Name, x => x);
 
-                var containerStatuses = pod.Status.ContainerStatuses ?? [];
-                var containers = (pod.Spec.Containers ?? [])
-                    .Select(container => new ContainerDTO(
-                        container.Name,
-                        containerStatuses.FirstOrDefault(status => status.Name == container.Name)?.Ready == true
-                            ? ContainerStatus.Ready
-                            : ContainerStatus.NotReady))
-                    .ToArray();
+                var containers = pod.Spec.Containers
+                    .Select(container => 
+                        new ContainerDTO(
+                            container.Name,
+                            containerStatuses[container.Name].Ready ? ContainerStatus.Ready : ContainerStatus.NotReady,
+                            containerStatuses[container.Name].RestartCount
+                        )
+                    ).ToArray();
 
                 DateTimeOffset? createdAt = pod.Metadata.CreationTimestamp is null
                     ? null
@@ -44,7 +43,7 @@ namespace Kubonia.Server.Pods
                     PodIp: pod.Status.PodIP,
                     CreatedAt: createdAt,
                     ReadyContainers: containers.Count(container => container.Status == ContainerStatus.Ready),
-                    RestartCount: containerStatuses.Sum(status => status.RestartCount),
+                    RestartCount: containers.Sum(status => status.RestartCount),
                     Containers: containers
                 );
             }
