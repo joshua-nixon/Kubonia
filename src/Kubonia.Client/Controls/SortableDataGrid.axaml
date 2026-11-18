@@ -105,10 +105,9 @@
         </Grid>
 
         <Border Grid.Row="1"
-                CornerRadius="9"
+                CornerRadius="0"
                 Background="{DynamicResource SurfaceBackground}"
-                BorderBrush="{DynamicResource BorderDefault}"
-                BorderThickness="1"
+                BorderThickness="0"
                 ClipToBounds="True">
             <DataGrid x:Name="InnerGrid"
                       Classes="SortableTable"

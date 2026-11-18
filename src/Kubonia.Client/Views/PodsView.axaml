@@ -7,6 +7,41 @@
         <Style Selector="DataGridCell TextBlock">
             <Setter Property="FontSize" Value="12" />
         </Style>
+        <Style Selector="DataGrid.SortableTable">
+            <Setter Property="HorizontalGridLinesBrush" Value="#E1E5EB" />
+        </Style>
+        <Style Selector="DataGrid.SortableTable DataGridColumnHeader">
+            <Setter Property="Background" Value="#F3F5F7" />
+            <Setter Property="BorderBrush" Value="#DCE1E8" />
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+            <Setter Property="Padding" Value="12,0" />
+        </Style>
+        <Style Selector="DataGrid.SortableTable DataGridRow:selected">
+            <Setter Property="Background" Value="#EEF1F5" />
+        </Style>
+        <Style Selector="TextBlock.TableLink">
+            <Setter Property="Foreground" Value="{DynamicResource Link}" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Border.ContainerIndicator">
+            <Setter Property="Width" Value="9" />
+            <Setter Property="Height" Value="9" />
+            <Setter Property="CornerRadius" Value="2" />
+            <Setter Property="Background" Value="{DynamicResource Warning}" />
+        </Style>
+        <Style Selector="Border.ContainerIndicator.ContainerReady">
+            <Setter Property="Background" Value="{DynamicResource Success}" />
+        </Style>
+        <Style Selector="Ellipse.PodStatusDot.PodStatusSuccess">
+            <Setter Property="Fill" Value="{DynamicResource Success}" />
+        </Style>
+        <Style Selector="Ellipse.PodStatusDot.PodStatusWarning">
+            <Setter Property="Fill" Value="{DynamicResource Warning}" />
+        </Style>
+        <Style Selector="Ellipse.PodStatusDot.PodStatusDanger">
+            <Setter Property="Fill" Value="{DynamicResource Danger}" />
+        </Style>
         <Style Selector="TextBlock.PageState">
             <Setter Property="Foreground" Value="{DynamicResource TextMuted}" />
         </Style>
@@ -29,7 +64,7 @@
                                        IsVisible="False"
                                        x:DataType="models:PodRowViewModel"
                                        ColumnHeaderHeight="38"
-                                       RowHeight="35">				
+                                       RowHeight="35">
                 <controls:SortableDataGrid.ToolbarContent>
                     <Button x:Name="RefreshButton"
                             Classes="ActionButton"
@@ -41,57 +76,119 @@
                     </Button>
                 </controls:SortableDataGrid.ToolbarContent>
                 <controls:SortableDataGrid.Columns>
-                    <DataGridTextColumn Header="NAME"
-                                        Binding="{Binding Name}"
-                                        SortMemberPath="Name"
-                                        Width="2.2*"
-                                        MinWidth="120" />
-                    <DataGridTextColumn Header="NAMESPACE"
-                                        Binding="{Binding Namespace}"
-                                        SortMemberPath="Namespace"
-                                        Width="1.2*"
-                                        MinWidth="110" />
-                    <DataGridTemplateColumn Header="STATUS"
-                                            SortMemberPath="Phase"
-                                            Width="0.9*"
-                                            MinWidth="85">
+                    <DataGridTemplateColumn Header="NAME"
+                                            SortMemberPath="Name"
+                                            Width="2.4*"
+                                            MinWidth="220">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="models:PodRowViewModel">
-                                <TextBlock Text="{Binding Phase}"
-                                           Margin="0"
-                                           VerticalAlignment="Center"
-                                           Classes.TableStatusSuccess="{Binding IsSuccessStatus}"
-                                           Classes.TableStatusWarning="{Binding IsWarningStatus}"
-                                           Classes.TableStatusDanger="{Binding IsDangerStatus}" />
+                                <StackPanel Orientation="Horizontal"
+                                            Spacing="9"
+                                            VerticalAlignment="Center">
+                                    <Path Width="14"
+                                          Height="14"
+                                          Data="M 7,1 L 12.5,4 L 12.5,10 L 7,13 L 1.5,10 L 1.5,4 Z M 1.5,4 L 7,7.2 L 12.5,4 M 7,7.2 L 7,13"
+                                          Stroke="{DynamicResource Link}"
+                                          StrokeThickness="1.1"
+                                          StrokeLineCap="Round"
+                                          StrokeJoin="Round"
+                                          VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding Name}"
+                                               Classes="TableCellName"
+                                               Margin="0"
+                                               VerticalAlignment="Center" />
+                                </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="NODE"
-                                        Binding="{Binding NodeName}"
-                                        SortMemberPath="NodeName"
-                                        Width="1.1*"
-                                        MinWidth="100" />
+                    <DataGridTemplateColumn Header="NAMESPACE"
+                                            SortMemberPath="Namespace"
+                                            Width="1.3*"
+                                            MinWidth="110">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate x:DataType="models:PodRowViewModel">
+                                <TextBlock Text="{Binding Namespace}"
+                                           Classes="TableLink" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="POD IP"
                                         Binding="{Binding PodIp}"
                                         SortMemberPath="PodIp"
                                         IsVisible="False"
                                         Width="1.1*"
                                         MinWidth="90" />
-                    <DataGridTextColumn Header="READY"
-                                        Binding="{Binding Ready}"
-                                        SortMemberPath="Ready"
-                                        Width="0.7*"
-                                        MinWidth="75" />
+                    <DataGridTemplateColumn Header="CONTAINERS"
+                                            SortMemberPath="ContainerCount"
+                                            Width="0.8*"
+                                            MinWidth="90">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate x:DataType="models:PodRowViewModel">
+                                <ItemsControl ItemsSource="{Binding ContainerIndicators}"
+                                              ToolTip.Tip="{Binding Ready}"
+                                              VerticalAlignment="Center">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"
+                                                        Spacing="4" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="x:Boolean">
+                                            <Border Classes="ContainerIndicator"
+                                                    Classes.ContainerReady="{Binding}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="RESTARTS"
                                         Binding="{Binding RestartCount}"
                                         SortMemberPath="RestartCount"
                                         Width="0.7*"
                                         MinWidth="85" />
+                    <DataGridTemplateColumn Header="NODE"
+                                            SortMemberPath="NodeName"
+                                            Width="1.6*"
+                                            MinWidth="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate x:DataType="models:PodRowViewModel">
+                                <TextBlock Text="{Binding NodeName}"
+                                           Classes="TableLink" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="AGE"
                                         Binding="{Binding Age}"
                                         SortMemberPath="CreatedAt"
-                                        Width="0.7*"
+                                        Width="0.5*"
                                         MinWidth="65" />
+                    <DataGridTemplateColumn Header="STATUS"
+                                            SortMemberPath="Phase"
+                                            Width="0.8*"
+                                            MinWidth="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate x:DataType="models:PodRowViewModel">
+                                <StackPanel Orientation="Horizontal"
+                                            Spacing="7"
+                                            VerticalAlignment="Center">
+                                    <Ellipse Width="8"
+                                             Height="8"
+                                             Classes="PodStatusDot"
+                                             Classes.PodStatusSuccess="{Binding IsSuccessStatus}"
+                                             Classes.PodStatusWarning="{Binding IsWarningStatus}"
+                                             Classes.PodStatusDanger="{Binding IsDangerStatus}" />
+                                    <TextBlock Text="{Binding Phase}"
+                                               Margin="0"
+                                               VerticalAlignment="Center"
+                                               Classes.TableStatusSuccess="{Binding IsSuccessStatus}"
+                                               Classes.TableStatusWarning="{Binding IsWarningStatus}"
+                                               Classes.TableStatusDanger="{Binding IsDangerStatus}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </controls:SortableDataGrid.Columns>
             </controls:SortableDataGrid>
         </Grid>

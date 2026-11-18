@@ -9,11 +9,18 @@ public sealed record PodRowViewModel(
     string NodeName,
     string PodIp,
     string Ready,
+    int ReadyContainers,
+    int ContainerCount,
     long RestartCount,
     string Age,
     DateTimeOffset? CreatedAt
 )
 {
+    public IReadOnlyList<bool> ContainerIndicators { get; } =
+        Enumerable.Range(0, Math.Max(ContainerCount, 0))
+            .Select(index => index < ReadyContainers)
+            .ToArray();
+
     public bool IsSuccessStatus =>
         string.Equals(Phase, PodStatus.Running, StringComparison.OrdinalIgnoreCase) ||
         string.Equals(Phase, PodStatus.Succeeded, StringComparison.OrdinalIgnoreCase);

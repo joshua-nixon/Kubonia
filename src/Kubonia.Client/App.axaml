@@ -1,22 +1,19 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
              x:Class="Kubonia.Client.App"
              RequestedThemeVariant="Default">
 
     <Application.Styles>
-        <FluentTheme />
-        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
+        <themes:MaterialTheme BaseTheme="Light"
+                              PrimaryColor="DeepOrange"
+                              SecondaryColor="Blue" />
 
         <Style Selector="Window">
             <Setter Property="FontFamily" Value="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Inter, Helvetica Neue, Arial, sans-serif" />
             <Setter Property="FontSize" Value="13" />
             <Setter Property="Background" Value="{DynamicResource AppBackground}" />
             <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
-        </Style>
-
-        <Style Selector="Button">
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="BorderThickness" Value="0" />
         </Style>
 
         <Style Selector="TabControl.WorkspaceTabs">
@@ -39,6 +36,25 @@
             <Setter Property="BorderThickness" Value="1" />
         </Style>
 
+        <Style Selector="TabControl.WorkspaceTabs TabItem:selected">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+
+        <Style Selector="TabControl.WorkspaceTabs TabItem:pointerover /template/ Border#PART_LayoutRoot">
+            <Setter Property="Background" Value="{DynamicResource SurfaceElevated}" />
+            <Setter Property="TextElement.Foreground" Value="{DynamicResource TextPrimary}" />
+        </Style>
+
+        <Style Selector="TabControl.WorkspaceTabs TabItem:selected:pointerover /template/ Border#PART_LayoutRoot">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBackground}" />
+        </Style>
+
+        <Style Selector="TabControl.WorkspaceTabs TabItem:selected /template/ Border#PART_SelectedPipe">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+
         <Style Selector="Button.WorkspaceTabClose">
             <Setter Property="Width" Value="16" />
             <Setter Property="Height" Value="16" />
@@ -57,25 +73,6 @@
         <Style Selector="Button.WorkspaceTabClose:pointerover">
             <Setter Property="Background" Value="{DynamicResource SurfaceHover}" />
             <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
-        </Style>
-
-        <Style Selector="TabControl.WorkspaceTabs TabItem:selected">
-            <Setter Property="Background" Value="{DynamicResource SurfaceBackground}" />
-            <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-        </Style>
-
-        <Style Selector="TabControl.WorkspaceTabs TabItem:pointerover /template/ Border#PART_LayoutRoot">
-            <Setter Property="Background" Value="{DynamicResource SurfaceElevated}" />
-            <Setter Property="TextElement.Foreground" Value="{DynamicResource TextPrimary}" />
-        </Style>
-
-        <Style Selector="TabControl.WorkspaceTabs TabItem:selected:pointerover /template/ Border#PART_LayoutRoot">
-            <Setter Property="Background" Value="{DynamicResource SurfaceBackground}" />
-        </Style>
-
-        <Style Selector="TabControl.WorkspaceTabs TabItem:selected /template/ Border#PART_SelectedPipe">
-            <Setter Property="IsVisible" Value="False" />
         </Style>
 
         <Style Selector="Border.NavItem">
@@ -239,7 +236,7 @@
             <Setter Property="Background" Value="{DynamicResource SurfaceBackground}" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
-            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="GridLinesVisibility" Value="Horizontal" />
             <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource BorderDefault}" />
         </Style>
@@ -247,7 +244,7 @@
         <Style Selector="DataGrid.SortableTable DataGridColumnHeader">
             <Setter Property="Background" Value="{DynamicResource SurfaceElevated}" />
             <Setter Property="Foreground" Value="{DynamicResource TextMuted}" />
-            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontSize" Value="10" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Padding" Value="10,0" />
         </Style>
@@ -280,6 +277,7 @@
             <Setter Property="Background" Value="{DynamicResource ActionOrangePressed}" />
             <Setter Property="BorderBrush" Value="{DynamicResource ActionOrangePressed}" />
         </Style>
+
     </Application.Styles>
 
     <Application.Resources>
@@ -296,10 +294,10 @@
         <SolidColorBrush x:Key="ActionOrange" Color="#E87924" />
         <SolidColorBrush x:Key="ActionOrangeHover" Color="#D96A17" />
         <SolidColorBrush x:Key="ActionOrangePressed" Color="#BE5A11" />
-        <SolidColorBrush x:Key="Accent" Color="#4C7FE8" />
-        <SolidColorBrush x:Key="AccentSoft" Color="#E8EEF9" />
-        <SolidColorBrush x:Key="AccentStrong" Color="#3D6FD4" />
-        <SolidColorBrush x:Key="Link" Color="#4387E8" />
+        <SolidColorBrush x:Key="Accent" Color="#E64A19" />
+        <SolidColorBrush x:Key="AccentSoft" Color="#FBE9E7" />
+        <SolidColorBrush x:Key="AccentStrong" Color="#BF360C" />
+        <SolidColorBrush x:Key="Link" Color="#315FCC" />
         <SolidColorBrush x:Key="Success" Color="#2E944F" />
         <SolidColorBrush x:Key="Warning" Color="#B78310" />
         <SolidColorBrush x:Key="Danger" Color="#D94B45" />

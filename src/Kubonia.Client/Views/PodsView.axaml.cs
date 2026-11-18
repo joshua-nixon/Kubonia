@@ -99,6 +99,8 @@ public partial class PodsView : UserControl
             pod.NodeName,
             pod.PodIp,
             $"{pod.ReadyContainers}/{pod.ContainerCount}",
+            pod.ReadyContainers,
+            pod.ContainerCount,
             pod.RestartCount,
             FormatAge(pod.CreatedAt),
             pod.CreatedAt
