@@ -4,7 +4,7 @@ namespace Kubonia.Server.K8s
 {
     public static class ServiceCollectionExtensions
     {
-        extension (IServiceCollection services)
+        extension(IServiceCollection services)
         {
             public IServiceCollection AddKubernetesAccessor()
             {

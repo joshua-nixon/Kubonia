@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Kubonia.Shared.Pods;
+﻿using Kubonia.Shared.Pods;
 
 namespace Kubonia.Client.Services;
 

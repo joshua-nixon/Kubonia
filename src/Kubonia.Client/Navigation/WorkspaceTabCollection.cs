@@ -28,8 +28,8 @@ public sealed class WorkspaceTabCollection
         }
 
         var tab = new WorkspaceTab(
-            page.Route, 
-            page.Title, 
+            page.Route,
+            page.Title,
             page.CreateView(_viewFactory)
         );
 

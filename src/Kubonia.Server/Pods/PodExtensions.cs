@@ -6,7 +6,7 @@ namespace Kubonia.Server.Pods
 {
     internal static class PodExtensions
     {
-        extension (IServiceCollection services)
+        extension(IServiceCollection services)
         {
             public IServiceCollection AddPodServices()
             {
@@ -16,7 +16,7 @@ namespace Kubonia.Server.Pods
             }
         }
 
-        extension (V1Pod pod)
+        extension(V1Pod pod)
         {
             public PodDTO ToPodDTO()
             {

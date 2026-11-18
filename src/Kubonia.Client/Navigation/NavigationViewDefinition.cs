@@ -8,7 +8,7 @@ public interface INavigationViewDefinition
     string Route { get; }
 
     Control CreateView(ViewFactory factory);
-    
+
 }
 public sealed record NavigationViewDefinition<T>(string Title) : INavigationViewDefinition
     where T : Control
