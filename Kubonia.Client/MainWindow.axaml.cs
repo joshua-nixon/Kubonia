@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Kubonia;
+namespace Kubonia.Client;
 
 public partial class MainWindow : Window
 {

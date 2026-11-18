@@ -2,9 +2,130 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Kubonia.Client.App"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Styles>
         <FluentTheme />
+
+        <Style Selector="Window">
+            <Setter Property="FontFamily" Value="Inter, Segoe UI" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Background" Value="{DynamicResource AppBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
+        </Style>
+
+        <Style Selector="Button">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
+        <Style Selector="Border.NavItem">
+            <Setter Property="Height" Value="38" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="12,0" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+
+        <Style Selector="Border.NavItem:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SurfaceHover}" />
+        </Style>
+
+        <Style Selector="Border.NavItem TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+        </Style>
+
+        <Style Selector="Border.ToolbarButton">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+
+        <Style Selector="Border.ToolbarButton:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SurfaceHover}" />
+        </Style>
+
+        <Style Selector="Border.ToolbarButton TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+
+        <Style Selector="Border.MetricCard">
+            <Setter Property="MinHeight" Value="124" />
+            <Setter Property="Margin" Value="0,0,10,0" />
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="CornerRadius" Value="9" />
+            <Setter Property="Background" Value="{DynamicResource SurfaceBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderDefault}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+
+        <Style Selector="TextBlock.TableHeader">
+            <Setter Property="Margin" Value="16,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource TextMuted}" />
+        </Style>
+
+        <Style Selector="Grid.TableRow">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+
+        <Style Selector="Grid.TableRow:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SurfaceHover}" />
+        </Style>
+
+        <Style Selector="TextBlock.TableCell">
+            <Setter Property="Margin" Value="16,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+        </Style>
+
+        <Style Selector="TextBlock.TableCellName">
+            <Setter Property="Margin" Value="16,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
+        </Style>
+
+        <Style Selector="TextBlock.TableStatusSuccess">
+            <Setter Property="Margin" Value="16,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource Success}" />
+        </Style>
+
+        <Style Selector="TextBlock.TableStatusWarning">
+            <Setter Property="Margin" Value="16,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource Warning}" />
+        </Style>
+
+        <Style Selector="TextBlock.TableStatusDanger">
+            <Setter Property="Margin" Value="16,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource Danger}" />
+        </Style>
     </Application.Styles>
+
+    <Application.Resources>
+        <SolidColorBrush x:Key="AppBackground" Color="#000000" />
+        <SolidColorBrush x:Key="SurfaceBackground" Color="#0C0C0E" />
+        <SolidColorBrush x:Key="SurfaceElevated" Color="#141416" />
+        <SolidColorBrush x:Key="SurfaceHover" Color="#202024" />
+        <SolidColorBrush x:Key="SidebarBackground" Color="#0A0A0C" />
+        <SolidColorBrush x:Key="BorderDefault" Color="#26262B" />
+        <SolidColorBrush x:Key="BorderStrong" Color="#34343A" />
+        <SolidColorBrush x:Key="TextPrimary" Color="#EDEDED" />
+        <SolidColorBrush x:Key="TextSecondary" Color="#A1A1A8" />
+        <SolidColorBrush x:Key="TextMuted" Color="#6E6E76" />
+        <SolidColorBrush x:Key="Accent" Color="#E6E6EA" />
+        <SolidColorBrush x:Key="AccentStrong" Color="#45454D" />
+        <SolidColorBrush x:Key="Link" Color="#58A6FF" />
+        <SolidColorBrush x:Key="Success" Color="#3FB950" />
+        <SolidColorBrush x:Key="Warning" Color="#D29922" />
+        <SolidColorBrush x:Key="Danger" Color="#F85149" />
+        <SolidColorBrush x:Key="Purple" Color="#BC8CFF" />
+    </Application.Resources>
 </Application>
