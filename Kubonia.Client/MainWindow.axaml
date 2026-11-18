@@ -21,35 +21,6 @@
                 BorderBrush="{DynamicResource BorderDefault}"
                 BorderThickness="0,0,1,0">
             <DockPanel>
-                <!-- Brand -->
-                <Border DockPanel.Dock="Top"
-                        Height="60"
-                        Padding="14,0"
-                        BorderBrush="{DynamicResource BorderDefault}"
-                        BorderThickness="0,0,0,1">
-                    <StackPanel Orientation="Horizontal"
-                                VerticalAlignment="Center"
-                                Spacing="9">
-                        <Border Width="30"
-                                Height="30"
-                                CornerRadius="7"
-                                Background="{DynamicResource AccentSoft}"
-                                BorderBrush="{DynamicResource BorderDefault}"
-                                BorderThickness="1">
-                            <TextBlock Text="K"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       FontSize="14"
-                                       FontWeight="SemiBold"
-                                       Foreground="{DynamicResource AccentStrong}" />
-                        </Border>
-                        <TextBlock Text="kubonia"
-                                   FontSize="15"
-                                   FontWeight="SemiBold"
-                                   VerticalAlignment="Center"
-                                   Foreground="{DynamicResource TextPrimary}" />
-                    </StackPanel>
-                </Border>
 
                 <!-- Context -->
                 <Border DockPanel.Dock="Top"
@@ -117,24 +88,6 @@
                                 <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
                                     <Ellipse Width="7" Height="7" Fill="{DynamicResource Link}" />
                                     <TextBlock Text="Pods" />
-                                </StackPanel>
-                            </Border>
-                            <Border Classes="NavItem">
-                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                    <Ellipse Width="7" Height="7" Fill="{DynamicResource Purple}" />
-                                    <TextBlock Text="Deployments" />
-                                </StackPanel>
-                            </Border>
-                            <Border Classes="NavItem">
-                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                    <Ellipse Width="7" Height="7" Fill="{DynamicResource Success}" />
-                                    <TextBlock Text="StatefulSets" />
-                                </StackPanel>
-                            </Border>
-                            <Border Classes="NavItem">
-                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                    <Ellipse Width="7" Height="7" Fill="{DynamicResource Warning}" />
-                                    <TextBlock Text="DaemonSets" />
                                 </StackPanel>
                             </Border>
                         </StackPanel>

@@ -1,0 +1,19 @@
+@Kubonia.Server_HostAddress = http://127.0.0.1:5215
+
+### Server health
+GET {{Kubonia.Server_HostAddress}}/health
+Accept: application/json
+
+###
+
+### List pods across namespaces
+GET {{Kubonia.Server_HostAddress}}/api/pods
+Accept: application/json
+
+###
+
+### List pods in one namespace
+GET {{Kubonia.Server_HostAddress}}/api/pods?namespace=default
+Accept: application/json
+
+###
