@@ -108,9 +108,9 @@
         </Style>
 
         <Style Selector="ListBox.NavigationGroupItems ListBoxItem">
-            <Setter Property="Height" Value="31" />
-            <Setter Property="Margin" Value="0" />
-            <Setter Property="Padding" Value="10,0" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="Margin" Value="0,1,0,1" />
+            <Setter Property="Padding" Value="14,0" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -134,11 +134,19 @@
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
 
+        <Style Selector="ListBox.NavigationGroupItems ListBoxItem Path">
+            <Setter Property="Stroke" Value="{DynamicResource TextMuted}" />
+        </Style>
+
+        <Style Selector="ListBox.NavigationGroupItems ListBoxItem:selected Path">
+            <Setter Property="Stroke" Value="{DynamicResource AccentStrong}" />
+        </Style>
+
         <Style Selector="Button.SidebarGroupToggle">
-            <Setter Property="Height" Value="32" />
+            <Setter Property="Height" Value="28" />
             <Setter Property="Margin" Value="0" />
-            <Setter Property="Padding" Value="8,0" />
-            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius" Value="4" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="BorderBrush" Value="Transparent" />
             <Setter Property="Background" Value="Transparent" />
@@ -146,6 +154,19 @@
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="FontSize" Value="13" />
             <Setter Property="Foreground" Value="{DynamicResource TextSecondary}" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <ContentPresenter Name="PART_ContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Padding="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter>
         </Style>
 
         <Style Selector="Button.SidebarGroupToggle:pointerover">
@@ -294,9 +315,9 @@
         <SolidColorBrush x:Key="ActionOrange" Color="#E87924" />
         <SolidColorBrush x:Key="ActionOrangeHover" Color="#D96A17" />
         <SolidColorBrush x:Key="ActionOrangePressed" Color="#BE5A11" />
-        <SolidColorBrush x:Key="Accent" Color="#E64A19" />
-        <SolidColorBrush x:Key="AccentSoft" Color="#FBE9E7" />
-        <SolidColorBrush x:Key="AccentStrong" Color="#BF360C" />
+        <SolidColorBrush x:Key="Accent" Color="#315FCC" />
+        <SolidColorBrush x:Key="AccentSoft" Color="#E8EEFC" />
+        <SolidColorBrush x:Key="AccentStrong" Color="#315FCC" />
         <SolidColorBrush x:Key="Link" Color="#315FCC" />
         <SolidColorBrush x:Key="Success" Color="#2E944F" />
         <SolidColorBrush x:Key="Warning" Color="#B78310" />

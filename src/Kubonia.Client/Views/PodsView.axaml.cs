@@ -98,12 +98,10 @@ public partial class PodsView : UserControl
             pod.Phase,
             pod.NodeName,
             pod.PodIp,
-            $"{pod.ReadyContainers}/{pod.ContainerCount}",
-            pod.ReadyContainers,
-            pod.ContainerCount,
             pod.RestartCount,
             FormatAge(pod.CreatedAt),
-            pod.CreatedAt
+            pod.CreatedAt,
+            pod.Containers
         );
     }
 
@@ -115,6 +113,7 @@ public partial class PodsView : UserControl
         }
 
         var age = DateTimeOffset.UtcNow - createdAt.Value;
+
         if (age < TimeSpan.Zero)
         {
             return "<1m";

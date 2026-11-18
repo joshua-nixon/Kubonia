@@ -15,9 +15,20 @@
             <Setter Property="BorderBrush" Value="#DCE1E8" />
             <Setter Property="BorderThickness" Value="0,0,0,1" />
             <Setter Property="Padding" Value="12,0" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="MinHeight" Value="32" />
+        </Style>
+        <Style Selector="DataGrid.SortableTable DataGridRow">
+            <Setter Property="Height" Value="28" />
+            <Setter Property="MinHeight" Value="28" />
         </Style>
         <Style Selector="DataGrid.SortableTable DataGridRow:selected">
             <Setter Property="Background" Value="#EEF1F5" />
+        </Style>
+        <Style Selector="DataGrid.SortableTable DataGridCell">
+            <Setter Property="Height" Value="28" />
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="Padding" Value="8,0" />
         </Style>
         <Style Selector="TextBlock.TableLink">
             <Setter Property="Foreground" Value="{DynamicResource Link}" />
@@ -63,8 +74,8 @@
                                        Grid.Row="1"
                                        IsVisible="False"
                                        x:DataType="models:PodRowViewModel"
-                                       ColumnHeaderHeight="38"
-                                       RowHeight="35">
+                                       ColumnHeaderHeight="32"
+                                       RowHeight="28">
                 <controls:SortableDataGrid.ToolbarContent>
                     <Button x:Name="RefreshButton"
                             Classes="ActionButton"
@@ -125,7 +136,6 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="models:PodRowViewModel">
                                 <ItemsControl ItemsSource="{Binding ContainerIndicators}"
-                                              ToolTip.Tip="{Binding Ready}"
                                               VerticalAlignment="Center">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
@@ -134,9 +144,10 @@
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
-                                        <DataTemplate x:DataType="x:Boolean">
+                                        <DataTemplate x:DataType="models:ContainerIndicatorViewModel">
                                             <Border Classes="ContainerIndicator"
-                                                    Classes.ContainerReady="{Binding}" />
+                                                    Classes.ContainerReady="{Binding IsReady}"
+                                                    ToolTip.Tip="{Binding Tooltip}" />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>

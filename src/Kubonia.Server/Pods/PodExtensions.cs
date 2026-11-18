@@ -24,7 +24,13 @@ namespace Kubonia.Server.Pods
                 Guard.IsNotNull(pod.Status);
 
                 var containerStatuses = pod.Status.ContainerStatuses ?? [];
-                var containerCount = pod.Spec.Containers?.Count ?? 0;
+                var containers = (pod.Spec.Containers ?? [])
+                    .Select(container => new ContainerDTO(
+                        container.Name,
+                        containerStatuses.FirstOrDefault(status => status.Name == container.Name)?.Ready == true
+                            ? ContainerStatus.Ready
+                            : ContainerStatus.NotReady))
+                    .ToArray();
 
                 DateTimeOffset? createdAt = pod.Metadata.CreationTimestamp is null
                     ? null
@@ -37,9 +43,9 @@ namespace Kubonia.Server.Pods
                     NodeName: pod.Spec.NodeName ?? string.Empty,
                     PodIp: pod.Status.PodIP,
                     CreatedAt: createdAt,
-                    ReadyContainers: containerStatuses.Count(status => status.Ready),
-                    ContainerCount: containerCount,
-                    RestartCount: containerStatuses.Sum(status => status.RestartCount)
+                    ReadyContainers: containers.Count(container => container.Status == ContainerStatus.Ready),
+                    RestartCount: containerStatuses.Sum(status => status.RestartCount),
+                    Containers: containers
                 );
             }
         }

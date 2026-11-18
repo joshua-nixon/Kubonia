@@ -8,18 +8,16 @@ public sealed record PodRowViewModel(
     string Phase,
     string NodeName,
     string PodIp,
-    string Ready,
-    int ReadyContainers,
-    int ContainerCount,
     long RestartCount,
     string Age,
-    DateTimeOffset? CreatedAt
+    DateTimeOffset? CreatedAt,
+    IReadOnlyList<ContainerDTO> Containers
 )
 {
-    public IReadOnlyList<bool> ContainerIndicators { get; } =
-        Enumerable.Range(0, Math.Max(ContainerCount, 0))
-            .Select(index => index < ReadyContainers)
-            .ToArray();
+    public int ContainerCount => Containers.Count;
+
+    public IReadOnlyList<ContainerIndicatorViewModel> ContainerIndicators { get; } =
+        [.. Containers.Select(container => new ContainerIndicatorViewModel(container.Name, container.Status))];
 
     public bool IsSuccessStatus =>
         string.Equals(Phase, PodStatus.Running, StringComparison.OrdinalIgnoreCase) ||
@@ -31,4 +29,11 @@ public sealed record PodRowViewModel(
 
     public bool IsDangerStatus =>
         string.Equals(Phase, PodStatus.Failed, StringComparison.OrdinalIgnoreCase);
+}
+
+public sealed record ContainerIndicatorViewModel(string Name, string Status)
+{
+    public bool IsReady => Status == ContainerStatus.Ready;
+
+    public string Tooltip => Name;
 }

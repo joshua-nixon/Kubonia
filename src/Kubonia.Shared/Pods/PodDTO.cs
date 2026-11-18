@@ -8,6 +8,6 @@ public sealed record PodDTO(
     string PodIp,
     DateTimeOffset? CreatedAt,
     int ReadyContainers,
-    int ContainerCount,
-    long RestartCount
+    long RestartCount,
+    IReadOnlyList<ContainerDTO> Containers
 );

@@ -75,24 +75,34 @@
                             </Grid>
                         </Button>
 
-                        <ListBox x:Name="WorkloadsItems"
-                                 Classes="NavigationGroupItems"
-                                 Margin="4,3,0,0"
-                                 IsVisible="True"
-                                 SelectionChanged="NavigationPages_SelectionChanged">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate x:DataType="navigation:INavigationViewDefinition">
-                                    <StackPanel Orientation="Horizontal"
-                                                Spacing="10"
-                                                VerticalAlignment="Center">
-                                        <Ellipse Width="7"
-                                                 Height="7"
-                                                 Fill="{DynamicResource Accent}" />
-                                        <TextBlock Text="{Binding Title}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                        <Grid Margin="4,3,0,0">
+                            <Border Width="1"
+                                    Margin="2,0,0,4"
+                                    HorizontalAlignment="Left"
+                                    Background="{DynamicResource BorderStrong}" />
+                            <ListBox x:Name="WorkloadsItems"
+                                     Classes="NavigationGroupItems"
+                                     IsVisible="True"
+                                     SelectionChanged="NavigationPages_SelectionChanged">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate x:DataType="navigation:INavigationViewDefinition">
+                                        <StackPanel Orientation="Horizontal"
+                                                    Spacing="10"
+                                                    VerticalAlignment="Center">
+                                            <Path Width="14"
+                                                  Height="14"
+                                                  Data="M 7,1 L 12.5,4 L 12.5,10 L 7,13 L 1.5,10 L 1.5,4 Z M 1.5,4 L 7,7.2 L 12.5,4 M 7,7.2 L 7,13"
+                                                  Stroke="{DynamicResource TextMuted}"
+                                                  StrokeThickness="1.1"
+                                                  StrokeLineCap="Round"
+                                                  StrokeJoin="Round"
+                                                  VerticalAlignment="Center" />
+                                            <TextBlock Text="{Binding Title}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
                     </StackPanel>
                 </ScrollViewer>
             </DockPanel>
