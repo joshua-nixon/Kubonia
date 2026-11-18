@@ -14,7 +14,7 @@
         TransparencyLevelHint="Mica"
         CanResize="True">
 
-    <Grid ColumnDefinitions="248,*">
+    <Grid ColumnDefinitions="224,*">
         <!-- Sidebar -->
         <Border Grid.Column="0"
                 Background="{DynamicResource SidebarBackground}"
@@ -23,53 +23,43 @@
             <DockPanel>
                 <!-- Brand -->
                 <Border DockPanel.Dock="Top"
-                        Height="72"
-                        Padding="16,0"
+                        Height="60"
+                        Padding="14,0"
                         BorderBrush="{DynamicResource BorderDefault}"
                         BorderThickness="0,0,0,1">
                     <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center"
-                                Spacing="10">
-                        <Border Width="34"
-                                Height="34"
-                                CornerRadius="8"
-                                Background="#34343A"
-                                BorderBrush="#45454D"
+                                Spacing="9">
+                        <Border Width="30"
+                                Height="30"
+                                CornerRadius="7"
+                                Background="{DynamicResource AccentSoft}"
+                                BorderBrush="{DynamicResource BorderDefault}"
                                 BorderThickness="1">
                             <TextBlock Text="K"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
-                                       FontSize="16"
+                                       FontSize="14"
                                        FontWeight="SemiBold"
-                                       Foreground="{DynamicResource TextPrimary}" />
+                                       Foreground="{DynamicResource AccentStrong}" />
                         </Border>
                         <TextBlock Text="kubonia"
-                                   FontSize="16"
+                                   FontSize="15"
                                    FontWeight="SemiBold"
                                    VerticalAlignment="Center"
                                    Foreground="{DynamicResource TextPrimary}" />
-                        <Border Margin="6,0,0,0"
-                                Padding="6,2"
-                                CornerRadius="4"
-                                BorderBrush="{DynamicResource BorderStrong}"
-                                BorderThickness="1">
-                            <TextBlock Text="DEV"
-                                       FontSize="9"
-                                       FontWeight="Bold"
-                                       Foreground="{DynamicResource TextMuted}" />
-                        </Border>
                     </StackPanel>
                 </Border>
 
                 <!-- Context -->
                 <Border DockPanel.Dock="Top"
-                        Margin="12,12,12,8"
-                        Height="54"
+                        Margin="12,10,12,6"
+                        Height="48"
                         CornerRadius="8"
-                        Background="{DynamicResource SurfaceElevated}"
+                        Background="{DynamicResource SurfaceBackground}"
                         BorderBrush="{DynamicResource BorderDefault}"
                         BorderThickness="1"
-                        Padding="12,8">
+                        Padding="10,6">
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel>
                             <TextBlock Text="CONTEXT"
@@ -79,7 +69,7 @@
                             <TextBlock Text="docker-desktop"
                                        Margin="0,4,0,0"
                                        FontFamily="Cascadia Code, Consolas"
-                                       FontSize="12"
+                                       FontSize="11"
                                        Foreground="{DynamicResource TextPrimary}" />
                         </StackPanel>
                         <TextBlock Grid.Column="1"
@@ -92,105 +82,62 @@
                 <!-- Navigation -->
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
-                    <StackPanel Margin="8,6,8,16" Spacing="2">
-                        <TextBlock Text="OVERVIEW"
-                                   Margin="10,10,10,5"
-                                   FontSize="9"
-                                   FontWeight="SemiBold"
-                                   Foreground="{DynamicResource TextMuted}" />
+                    <StackPanel Margin="8,4,8,16" Spacing="1">
 
-                        <Border Height="38" CornerRadius="7" Background="{DynamicResource SurfaceHover}">
-                            <StackPanel Orientation="Horizontal"
-                                        Margin="12,0"
-                                        Spacing="10"
-                                        VerticalAlignment="Center">
-                                <Ellipse Width="8" Height="8" Fill="{DynamicResource Accent}" />
-                                <TextBlock Text="Overview"
-                                           FontWeight="SemiBold"
-                                           Foreground="{DynamicResource TextPrimary}" />
-                            </StackPanel>
-                        </Border>
+                        <Button Classes="SidebarGroupToggle"
+                                Click="WorkloadsToggle_Click">
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Path x:Name="WorkloadsChevron"
+                                      Width="10"
+                                      Height="6"
+                                      Stretch="Fill"
+                                      RenderTransformOrigin="50%,50%"
+                                      Data="M 1,1 L 5,5 L 9,1"
+                                      Stroke="{DynamicResource TextMuted}"
+                                      StrokeThickness="1.5" />
+                                <TextBlock Grid.Column="1"
+                                           Text="Workloads"
+                                           Margin="10,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource TextSecondary}" />
+                            </Grid>
+                        </Button>
 
-                        <TextBlock Text="WORKLOADS"
-                                   Margin="10,16,10,5"
-                                   FontSize="9"
-                                   FontWeight="SemiBold"
-                                   Foreground="{DynamicResource TextMuted}" />
-
-                        <Border Classes="NavItem">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Ellipse Width="8" Height="8" Fill="{DynamicResource Link}" />
-                                <TextBlock Text="Pods" />
-                            </StackPanel>
-                        </Border>
-                        <Border Classes="NavItem">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Ellipse Width="8" Height="8" Fill="{DynamicResource Purple}" />
-                                <TextBlock Text="Deployments" />
-                            </StackPanel>
-                        </Border>
-                        <Border Classes="NavItem">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Ellipse Width="8" Height="8" Fill="{DynamicResource Success}" />
-                                <TextBlock Text="StatefulSets" />
-                            </StackPanel>
-                        </Border>
-                        <Border Classes="NavItem">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Ellipse Width="8" Height="8" Fill="{DynamicResource Warning}" />
-                                <TextBlock Text="DaemonSets" />
-                            </StackPanel>
-                        </Border>
-
-                        <TextBlock Text="NETWORK"
-                                   Margin="10,16,10,5"
-                                   FontSize="9"
-                                   FontWeight="SemiBold"
-                                   Foreground="{DynamicResource TextMuted}" />
-
-                        <Border Classes="NavItem">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Ellipse Width="8" Height="8" Fill="{DynamicResource Success}" />
-                                <TextBlock Text="Services" />
-                            </StackPanel>
-                        </Border>
-                        <Border Classes="NavItem">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Ellipse Width="8" Height="8" Fill="{DynamicResource Link}" />
-                                <TextBlock Text="Ingress" />
-                            </StackPanel>
-                        </Border>
-                        <Border Classes="NavItem">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Ellipse Width="8" Height="8" Fill="{DynamicResource Warning}" />
-                                <TextBlock Text="Network Policies" />
-                            </StackPanel>
-                        </Border>
-
-                        <TextBlock Text="CLUSTER"
-                                   Margin="10,16,10,5"
-                                   FontSize="9"
-                                   FontWeight="SemiBold"
-                                   Foreground="{DynamicResource TextMuted}" />
-
-                        <Border Classes="NavItem">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Ellipse Width="8" Height="8" Fill="{DynamicResource TextSecondary}" />
-                                <TextBlock Text="Nodes" />
-                            </StackPanel>
-                        </Border>
-                        <Border Classes="NavItem">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Ellipse Width="8" Height="8" Fill="{DynamicResource TextSecondary}" />
-                                <TextBlock Text="Namespaces" />
-                            </StackPanel>
-                        </Border>
-                        <Border Classes="NavItem">
-                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                                <Ellipse Width="8" Height="8" Fill="{DynamicResource Danger}" />
-                                <TextBlock Text="Events" />
-                            </StackPanel>
-                        </Border>
+                        <StackPanel x:Name="WorkloadsItems"
+                                    Margin="4,3,0,0"
+                                    Spacing="1"
+                                    IsVisible="True">
+                            <Border Classes="NavItem Selected">
+                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                    <Ellipse Width="7" Height="7" Fill="{DynamicResource Accent}" />
+                                    <TextBlock Text="Overview" />
+                                </StackPanel>
+                            </Border>
+                            <Border Classes="NavItem">
+                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                    <Ellipse Width="7" Height="7" Fill="{DynamicResource Link}" />
+                                    <TextBlock Text="Pods" />
+                                </StackPanel>
+                            </Border>
+                            <Border Classes="NavItem">
+                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                    <Ellipse Width="7" Height="7" Fill="{DynamicResource Purple}" />
+                                    <TextBlock Text="Deployments" />
+                                </StackPanel>
+                            </Border>
+                            <Border Classes="NavItem">
+                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                    <Ellipse Width="7" Height="7" Fill="{DynamicResource Success}" />
+                                    <TextBlock Text="StatefulSets" />
+                                </StackPanel>
+                            </Border>
+                            <Border Classes="NavItem">
+                                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                    <Ellipse Width="7" Height="7" Fill="{DynamicResource Warning}" />
+                                    <TextBlock Text="DaemonSets" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </DockPanel>
@@ -237,12 +184,12 @@
             <ScrollViewer Grid.Row="1"
                           HorizontalScrollBarVisibility="Disabled"
                           VerticalScrollBarVisibility="Auto">
-                <StackPanel Margin="24" Spacing="20">
+                <StackPanel Margin="22" Spacing="18">
                     <!-- Header -->
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel>
                             <TextBlock Text="Overview"
-                                       FontSize="22"
+                                       FontSize="21"
                                        FontWeight="SemiBold"
                                        Foreground="{DynamicResource TextPrimary}" />
                             <TextBlock Text="Cluster resources and health"
