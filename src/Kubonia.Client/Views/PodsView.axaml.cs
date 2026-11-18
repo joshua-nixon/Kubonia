@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Kubonia.Client.Models;
 using Kubonia.Client.Services;
 using Kubonia.Shared.Pods;
 

@@ -20,6 +20,7 @@
         </Grid>
 
         <ContentControl Grid.Row="1"
+                        Margin="22,0,22,22"
                         Content="{Binding Body, ElementName=Root}" />
     </Grid>
 </UserControl>

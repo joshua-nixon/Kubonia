@@ -8,7 +8,7 @@
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
 
         <Style Selector="Window">
-            <Setter Property="FontFamily" Value="Segoe UI Variable, Segoe UI" />
+            <Setter Property="FontFamily" Value="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Inter, Helvetica Neue, Arial, sans-serif" />
             <Setter Property="FontSize" Value="13" />
             <Setter Property="Background" Value="{DynamicResource AppBackground}" />
             <Setter Property="Foreground" Value="{DynamicResource TextPrimary}" />
@@ -261,14 +261,24 @@
             <Setter Property="Background" Value="{DynamicResource SurfaceHover}" />
         </Style>
 
-        <Style Selector="Button.PodsRefreshButton">
-            <Setter Property="Height" Value="34" />
+        <Style Selector="Button.ActionButton">
+            <Setter Property="Height" Value="30" />
             <Setter Property="Padding" Value="12,0" />
-            <Setter Property="CornerRadius" Value="7" />
-            <Setter Property="Background" Value="{DynamicResource AccentStrong}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource AccentStrong}" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Background" Value="{DynamicResource ActionOrange}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ActionOrange}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style Selector="Button.ActionButton:pointerover">
+            <Setter Property="Background" Value="{DynamicResource ActionOrangeHover}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ActionOrangeHover}" />
+        </Style>
+
+        <Style Selector="Button.ActionButton:pressed">
+            <Setter Property="Background" Value="{DynamicResource ActionOrangePressed}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ActionOrangePressed}" />
         </Style>
     </Application.Styles>
 
@@ -283,6 +293,9 @@
         <SolidColorBrush x:Key="TextPrimary" Color="#1C2735" />
         <SolidColorBrush x:Key="TextSecondary" Color="#536174" />
         <SolidColorBrush x:Key="TextMuted" Color="#7A8797" />
+        <SolidColorBrush x:Key="ActionOrange" Color="#E87924" />
+        <SolidColorBrush x:Key="ActionOrangeHover" Color="#D96A17" />
+        <SolidColorBrush x:Key="ActionOrangePressed" Color="#BE5A11" />
         <SolidColorBrush x:Key="Accent" Color="#4C7FE8" />
         <SolidColorBrush x:Key="AccentSoft" Color="#E8EEF9" />
         <SolidColorBrush x:Key="AccentStrong" Color="#3D6FD4" />

@@ -1,6 +1,6 @@
 using Kubonia.Shared.Pods;
 
-namespace Kubonia.Client.Views;
+namespace Kubonia.Client.Models;
 
 public sealed record PodRowViewModel(
     string Name,
