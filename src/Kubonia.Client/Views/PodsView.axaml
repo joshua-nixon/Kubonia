@@ -7,24 +7,17 @@
         <Style Selector="DataGridCell TextBlock">
             <Setter Property="FontSize" Value="12" />
         </Style>
+        <Style Selector="TextBlock.PageState">
+            <Setter Property="Foreground" Value="{DynamicResource TextMuted}" />
+        </Style>
+        <Style Selector="TextBlock.PageState.Error">
+            <Setter Property="Foreground" Value="{DynamicResource Danger}" />
+        </Style>
     </UserControl.Styles>
 	
-    <Grid RowDefinitions="Auto,*">
-        <Grid Margin="22,22,22,0" ColumnDefinitions="*,Auto,Auto">
-			
-			<!-- Title -->
-			
-            <StackPanel>
-                <TextBlock Text="Pods"
-                           FontSize="21"
-                           FontWeight="SemiBold"
-                           Foreground="{DynamicResource TextPrimary}" />
-            </StackPanel>
-
-			<!-- Actions -->
-			
+    <controls:PageLayout Title="Pods">
+        <controls:PageLayout.HeaderActions>
             <Button x:Name="RefreshButton"
-                    Grid.Column="2"
                     Classes="PodsRefreshButton"
                     Click="RefreshButton_Click">
                 <TextBlock Text="Refresh"
@@ -32,35 +25,19 @@
                            FontWeight="SemiBold"
                            Foreground="White" />
             </Button>
-			
-        </Grid>
+        </controls:PageLayout.HeaderActions>
 
-        <Grid Grid.Row="1"
-              Margin="22,16,22,22"
-              RowDefinitions="Auto,Auto,Auto,*">
-			
-            <TextBlock x:Name="LoadingText"
+        <controls:PageLayout.Body>
+        <Grid Margin="22,16,22,22"
+              RowDefinitions="Auto,*">
+            <TextBlock x:Name="StateText"
+                       Classes="PageState"
+                       Margin="0,0,0,12"
                        Text="Loading pods..."
-                       Margin="0,0,0,12"
-                       IsVisible="False"
-                       Foreground="{DynamicResource TextMuted}" />
-			
-            <TextBlock x:Name="EmptyText"
-                       Grid.Row="1"
-                       Text="No pods found."
-                       Margin="0,0,0,12"
-                       IsVisible="False"
-                       Foreground="{DynamicResource TextMuted}" />
-			
-            <TextBlock x:Name="ErrorText"
-                       Grid.Row="2"
-                       Margin="0,0,0,12"
-                       IsVisible="False"
-                       TextWrapping="Wrap"
-                       Foreground="{DynamicResource Danger}" />
+                       TextWrapping="Wrap" />
 
             <controls:SortableDataGrid x:Name="PodsTable"
-                                       Grid.Row="3"
+                                       Grid.Row="1"
                                        IsVisible="False"
                                        x:DataType="views:PodRowViewModel"
                                        ColumnHeaderHeight="38"
@@ -120,5 +97,6 @@
                 </controls:SortableDataGrid.Columns>
             </controls:SortableDataGrid>
         </Grid>
-    </Grid>
+        </controls:PageLayout.Body>
+    </controls:PageLayout>
 </UserControl>

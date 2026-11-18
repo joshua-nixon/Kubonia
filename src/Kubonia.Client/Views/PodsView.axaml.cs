@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Text.Json;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Kubonia.Client.Services;
@@ -41,11 +42,10 @@ public partial class PodsView : UserControl
         }
 
         _isLoading = true;
+
+        SetViewState(PodsViewState.Loading);
+
         RefreshButton.IsEnabled = false;
-        LoadingText.IsVisible = true;
-        EmptyText.IsVisible = false;
-        ErrorText.IsVisible = false;
-        PodsTable.IsVisible = false;
 
         try
         {
@@ -53,20 +53,41 @@ public partial class PodsView : UserControl
             var rows = response.Items.Select(ToPodRow).ToArray();
 
             _pods.Clear();
+
             foreach (var row in rows)
             {
                 _pods.Add(row);
             }
 
-            LoadingText.IsVisible = false;
-            EmptyText.IsVisible = _pods.Count == 0;
-            PodsTable.IsVisible = _pods.Count > 0;
+            SetViewState(PodsViewState.Loaded);
         }
         finally
         {
             _isLoading = false;
             RefreshButton.IsEnabled = true;
         }
+    }
+
+    private void SetViewState(PodsViewState state, string? errorMessage = null)
+    {
+        StateText.Text = state switch
+        {
+            PodsViewState.Loading => "Loading pods...",
+            PodsViewState.Error => errorMessage ?? "Unable to load pods.",
+            PodsViewState.Loaded => string.Empty,
+            _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
+        };
+
+        StateText.IsVisible = state != PodsViewState.Loaded;
+
+        StateText.Classes.Remove("Error");
+
+        if (state == PodsViewState.Error)
+        {
+            StateText.Classes.Add("Error");
+        }
+
+        PodsTable.IsVisible = state == PodsViewState.Loaded;
     }
 
     private static PodRowViewModel ToPodRow(PodDTO pod)
@@ -113,6 +134,13 @@ public partial class PodsView : UserControl
         }
 
         return "<1m";
+    }
+
+    private enum PodsViewState
+    {
+        Loading,
+        Error,
+        Loaded
     }
 
 }
