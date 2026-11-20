@@ -2,20 +2,20 @@ using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Kubonia.Client.Models;
-using Kubonia.Client.Services;
+using Kubonia.Kube;
 using Kubonia.Shared.Pods;
 
 namespace Kubonia.Client.Views;
 
 public partial class PodsView : UserControl
 {
-    private readonly IKubeServerClient _kubeServerClient;
+    private readonly IKubernetesService _kubernetes;
     private readonly ObservableCollection<PodRowViewModel> _pods = [];
     private bool _isLoading;
 
-    public PodsView(IKubeServerClient kubeServerClient)
+    public PodsView(IKubernetesService kubernetes)
     {
-        _kubeServerClient = kubeServerClient;
+        _kubernetes = kubernetes;
 
         InitializeComponent();
 
@@ -49,8 +49,9 @@ public partial class PodsView : UserControl
 
         try
         {
-            var response = await _kubeServerClient.GetPodsAsync();
-            var rows = response.Items.Select(ToPodRow).ToArray();
+            var response = await _kubernetes.GetPodsAsync();
+
+            var rows = response.Select(ToPodRow).ToArray();
 
             _pods.Clear();
 

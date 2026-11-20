@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Kubonia.Kube\Kubonia.Kube.csproj" />
     <ProjectReference Include="..\Kubonia.Shared\Kubonia.Shared.csproj" />
   </ItemGroup>
 </Project>

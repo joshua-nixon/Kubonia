@@ -1,7 +1,7 @@
-namespace Kubonia.Shared.Pods;
+namespace Kubonia.Shared.Containers;
 
 public sealed record ContainerDTO(
-    string Name, 
+    string Name,
     string Status,
     int RestartCount
 );

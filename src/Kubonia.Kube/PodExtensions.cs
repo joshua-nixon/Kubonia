@@ -1,19 +1,11 @@
 ﻿using k8s.Models;
+using Kubonia.Shared.Containers;
 using Kubonia.Shared.Pods;
 
-namespace Kubonia.Server.Pods
+namespace Kubonia.Kube
 {
     internal static class PodExtensions
     {
-        extension(IServiceCollection services)
-        {
-            public IServiceCollection AddPodServices()
-            {
-                services.AddSingleton<IPodService, KubernetesPodService>();
-
-                return services;
-            }
-        }
 
         extension(V1Pod pod)
         {
@@ -23,7 +15,7 @@ namespace Kubonia.Server.Pods
                     .ToDictionary(x => x.Name, x => x);
 
                 var containers = pod.Spec.Containers
-                    .Select(container => 
+                    .Select(container =>
                         new ContainerDTO(
                             container.Name,
                             containerStatuses[container.Name].Ready ? ContainerStatus.Ready : ContainerStatus.NotReady,

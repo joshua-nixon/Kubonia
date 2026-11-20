@@ -1,4 +1,4 @@
-namespace Kubonia.Shared.Pods;
+namespace Kubonia.Shared.Containers;
 
 public static class ContainerStatus
 {

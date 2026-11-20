@@ -4,6 +4,6 @@
     <File Path="Directory.Packages.props" />
   </Folder>
   <Project Path="Kubonia.Client/Kubonia.Client.csproj" />
-  <Project Path="Kubonia.Server/Kubonia.Server.csproj" />
+  <Project Path="Kubonia.Kube/Kubonia.Kube.csproj" Id="5f2aee27-aee3-4757-9c21-3632e3dc3e95" />
   <Project Path="Kubonia.Shared/Kubonia.Shared.csproj" Id="90bdd0a1-68a3-40fd-ba47-43afcafce120" />
 </Solution>

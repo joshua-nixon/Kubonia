@@ -1,6 +1,7 @@
 ﻿using k8s;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Kubonia.Server.K8s
+namespace Kubonia.Kube
 {
     public static class ServiceCollectionExtensions
     {
@@ -15,7 +16,7 @@ namespace Kubonia.Server.K8s
                     return new Kubernetes(configuration);
                 });
 
-                services.AddSingleton<IKubernetesAccessor, KubernetesAccessor>();
+                services.AddSingleton<IKubernetesService, KubernetesService>();
 
                 return services;
             }
